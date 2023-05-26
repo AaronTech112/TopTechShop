@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from templates.seekviral.com/trimba3/forms/LoginPopUp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 May 2023 16:14:54 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="{% static 'cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css' %}">
+
+    <!-- Bootstrap-5 -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+    <!-- custom-styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animation.css' %}">
+</head>
+<body>
+    <main class="overflow-hidden">
+        <div class="container">
+            <div class="row h-100">
+                <div class="col-md-6 pe-0 tab-100 order_c mob-100">
+                    <div class="side slideup ">
+                        <article>
+                            {% if error_message %}<h1 class="main-heading " style="color:red;">{{error_message}} </h1>{% else %} <h2 class="main-heading ">TOP TECH SHOP <span class="highlight-text">CHEAP & QUALITY GADGETS{% endif %}</span></h2>
+                            <p>
+                                
+                            </p>
+                        </article>
+                        <div class="social">
+                            <span>sign up with </span>
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-google"></i></a>
+                        </div>
+                    </div>
+                    <div class="border-b slideup"></div>
+                </div>
+                <div class="col-md-6 ps-0 tab-100 mob-100">
+                    <div class="slidedown border-t"></div>
+                    <div class="form slidedown">
+                        <div class="form-text login">
+                            <h3>Log In</h3>
+                            <a href = "{% url 'shop:signup' %}" style="text-decoration:none;" ><span>Become A Shopper. </span><button class="join">Register</button></a>
+                        </div>
+                        <div class="form-text signup">
+                            <h3>Sign Up</h3>
+                            <span>New? </span><button class="create">Create an account</button>
+                        </div>
+                        <form method="post" id= "loginform" class="login">
+                            {% csrf_token %}
+                            <div class="input-field">
+                                <input type="email" id="email"  name="email" required>
+                                <label for="email">
+                                    <i class="fa-regular fa-user"></i>Email
+                                </label>
+                            </div>
+                            <div class="input-field delay-100ms">
+                                <input type="password" id="" name="password" required>
+                                <label for="password">
+                                    <i class="fa-solid fa-wrench"></i>Password
+                                </label>
+                            </div>
+                            <div class="radio-field">
+                                <input type="checkbox">
+                                <label>Keep me Logged In</label>
+                            </div>
+                            <button class="form-btn login" id="login" type="submit"><span>log in</span></button>
+                        </form>
+
+
+                        <form id="signupform" method="post" class="signup">
+                            <div class="input-field ">
+                                <input type="text" id="name" required>
+                                <label>
+                                    <i class="fa-regular fa-user"></i>Name
+                                </label>
+                            </div>
+                            <div class="input-field delay-100ms">
+                                <input type="text" id="user" required>
+                                <label>
+                                    <i class="fa-regular fa-user"></i>Username
+                                </label>
+                            </div>
+                            <div class="input-field delay-200ms">
+                                <input type="text" id="mail-email" required>
+                                <label>
+                                    <i class="fa-regular fa-user"></i>Email Address
+                                </label>
+                            </div>
+                            <div class="input-field delay-300ms">
+                                <input type="text" id="password" required>
+                                <label>
+                                    <i class="fa-solid fa-wrench"></i>Password
+                                </label>
+                            </div>
+                            <div class="radio-field">
+                                <input type="checkbox">
+                                <label>Keep me Logged In</label>
+                            </div>
+                            <button class="form-btn signup" id="signup" type="button"><span>Sign Up</span></button>
+                        </form>
+                        <div class="con-text login">
+                            <p class="mt-5">Forgot your <strong>username or password?</strong></p>
+                            <p class="mt-5">
+                                By clicking Log In. I confirm that I have read and agree
+                                to the Userthemes <a href="#">Terms of Service. Privacy Policy.</a> and 
+                                to receive emails and updates.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+    
+    <div id="error">
+
+    </div>
+
+
+    <!-- Bootstrap-5 -->
+    <script src="{% static 'assets/js/bootstrap.min.js'%}"></script>
+
+    <!-- Jquery -->
+    <script src="{% static 'assets/js/jquery-3.6.1.min.js'%}"></script>
+
+    <!-- My js -->
+    <script src="{% static 'assets/js/custom.js'%}"></script>
+</body>
+
+<!-- Mirrored from templates.seekviral.com/trimba3/forms/LoginPopUp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 May 2023 16:14:59 GMT -->
+</html>
