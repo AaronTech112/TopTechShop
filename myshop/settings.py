@@ -132,7 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = 'img/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # INSTAGRAM_ACCESS_TOKEN = 'IGQVJXX1ZAmNlprQTI2LUJrUG1mSzk5YzRVVV9KNlVUOW54dTdoczFEX0duWm50MEJrbks2dVh5SXpMaU5hT3FVNTNaWnBoQnVoRTNSUHlMdnlQU1BRUmtQb00wYnNYakRoTkppZA2haOWRGZAnJjNzZAZAaAZDZD'
 
