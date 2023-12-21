@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_list_or_404, redirect
 from .models import Category,Product, Cart, CartItem, FavoriteItem, Favorite, Review
-from instagram.client import InstagramAPI
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate, login, logout
