@@ -27,7 +27,7 @@
                 <div class="col-md-6 pe-0 tab-100 order_c mob-100">
                     <div class="side slideup ">
                         <article>
-                            {% if error_message %}<h1 class="main-heading " style="color:red;">{{error_message}} </h1>{% else %} <h2 class="main-heading ">TOP TECH SHOP <span class="highlight-text">CHEAP & QUALITY GADGETS{% endif %}</span></h2>
+                            {% if form.errors %}<h1 class="main-heading " style="color:red;"> Opps! </h1>{% else %} <h2 class="main-heading ">TOP TECH SHOP <span class="highlight-text">CHEAP & QUALITY GADGETS{% endif %}</span></h2>
                             <p>
                                 
                             </p>
@@ -47,7 +47,11 @@
                             <h3>Sign Up</h3>
                             <a href = "{% url 'shop:login' %}" style="text-decoration:none;" ><span> Already have an Account? </span><button class="create"> Login</button></a>
                         </div>
+                        {% for message in messages %}
+                        <p class ="d-flex text-center text-primary "> {{message}} <p>
+                        {% endfor %}
                         <form id="signupfor" method="post" class="signu">
+                            {% if form.errors %}<p style="color:red; font-size:15px;"> <br>Invalid Details</p><span class="main-heading " style="color:red; font-size:15px;">{{form.errors}} </span>{% else %} <span class="main-heading "><span class="highlight-text">{% endif %}</span></span>
                             {% csrf_token %}
                             {% for field in form %}
                             <div class="input-field delay-400ms">
@@ -56,12 +60,14 @@
                                 </label>
                                 {{field}}
                             </div>
+
                             {% endfor %}
                             <div class="radio-field">
                                 <input type="checkbox">
                                 <label>Keep me Logged In</label>
                             </div>
                             <button class="form-btn login" id="login" type="submit"><span>Sign Up</span></button>
+
                         </form>
                         <div class="con-text login">
                             <p class="mt-5">Forgot your <strong>username or password?</strong></p>

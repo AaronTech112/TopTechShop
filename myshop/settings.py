@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+# how much does it cost 
+
 
 from pathlib import Path
 import os
@@ -40,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "shop",
+    'rest_framework',
+    'django_filters'
 ]
 
 AUTH_USER_MODEL = 'shop.User'
@@ -85,7 +89,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgres://aarontech:DVbySQsFujbkFlboQVzf7eil90a7gqrB@dpg-choij2fdvk4goeu4qt6g-a.oregon-postgres.render.com/myshopdb')
+# DATABASES['default'] = dj_database_url.parse('postgres://aarontech:DVbySQsFujbkFlboQVzf7eil90a7gqrB@dpg-choij2fdvk4goeu4qt6g-a.oregon-postgres.render.com/myshopdb')
 
 
 
@@ -136,4 +140,6 @@ MEDIA_URL = 'img/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # INSTAGRAM_ACCESS_TOKEN = 'IGQVJXX1ZAmNlprQTI2LUJrUG1mSzk5YzRVVV9KNlVUOW54dTdoczFEX0duWm50MEJrbks2dVh5SXpMaU5hT3FVNTNaWnBoQnVoRTNSUHlMdnlQU1BRUmtQb00wYnNYakRoTkppZA2haOWRGZAnJjNzZAZAaAZDZD'
 
-
+REST_FRAMEWORK = {
+    "PAGE_SIZE":3
+}

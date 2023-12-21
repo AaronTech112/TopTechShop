@@ -12,7 +12,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6 p-0">
-          <div class="categories__item categories__large__item set-bg" data-setbg="{% static 'img/instagram/insta-2.jpg' %}">
+          <div class="categories__item categories__large__item set-bg" data-setbg="{% static 'img/office_back_png.png' %}">
             <div class="categories__text">
               {% if category %}{{category.name}}{% else %}<h1>{{category.name}}</h1>{% endif %}
               <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
@@ -25,7 +25,7 @@
           <div class="row">
             {% for c in categories %}
             <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-              <div class="categories__item set-bg" data-setbg="{% static 'img/instagram/insta-1.jpg' %}">
+              <div class="categories__item set-bg" data-setbg="{{c.image.url}}">
                 <div class="categories__text">
                   <h4> {{c.name}} </h4>
                   <p>{{c.count_all}}</p>
@@ -178,9 +178,9 @@ btns .forEach(btn=>{
               <div class="product__item__pic set-bg" data-setbg="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/product/product-2.jpg" %}{% endif %}">
                 <div class="label new">{{ product.category }}</div>
                 <ul class="product__hover">
-                  <li><a href="{% static "img/instagram/insta-1.jpg" %}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                  <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                  <li><a href="#"><i class="fa-solid fa-bag-shopping fa-shake"></i></a></li>
+                  <li><a href="{% url 'shop:add_favorite' product.id %}"><span class="fa-solid fa-heart-circle-plus fa-beat"></span></a></li>
+                  <li type = "hidden" ></a></li> 
+                  <li><a href="#"><i class="fa-sharp fa-solid fa-cart-plus fa-bounce"></i></a></li>
                 </ul>
               </div>
             </a>
@@ -268,7 +268,7 @@ btns .forEach(btn=>{
                 <div class="product__price">$ 59.0</div>
               </div>
             </div>
-            <div class="trend__item">
+            {% comment %} <div class="trend__item">
               <div class="trend__item__pic">
                 <img src="img/trend/ht-2.jpg" alt="">
               </div>
@@ -299,7 +299,7 @@ btns .forEach(btn=>{
                 </div>
                 <div class="product__price">$ 59.0</div>
               </div>
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">

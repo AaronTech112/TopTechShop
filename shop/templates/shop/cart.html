@@ -6,7 +6,7 @@ Shopping Cart
 {% endblock %}
 
 {% block content %}
-
+<script src="https://checkout.flutterwave.com/v3.js"></script>
     <div class="breadcrumb-option">
         <div class="container">
             <div class="row">
@@ -38,11 +38,12 @@ Shopping Cart
                             </thead>
                             <tbody>
                             {% for item in cartitems %}
+
                                 <tr>
                                     <td class="cart__product__item">
                                         <img src="{% if item.product.image %}{{item.product.image.url}}{%else%}{% static "img/on_image.png" %}{% endif %}" style = "width:20%" alt="">
                                         <div class="cart__product__item__title">
-                                            <h6>{{item.product.name}}</h6>
+                                            <a href= "{{ item.product.get_absolute_url }}" ><h6>{{item.product.name}}</h6>
                                             <div class="rating">
                                                 <i class="fa-sharp fa-solid fa-star fa-spin"></i>
                                                 <i class="fa-sharp fa-solid fa-star fa-spin"></i>
@@ -54,22 +55,26 @@ Shopping Cart
                                     </td>
                                     <td class="cart__price">N{{item.product.price}}</td>
                                     <td class="cart__quantity">
+                                        <form method = "POST" >
+                                            {% csrf_token %}
                                         <div class="pro-qty">
-                                            <input type="text" value="{{item.quantity}}">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">N{{item.total_price}}</td>
-                                    <form action="" method = "post">
-                                        {% csrf_token %}
-                                        <td class="cart__close">
-                                            <button style= "outline:none; border:none;" type="submit" class="submit-button">
-                                                <i class="fa-solid fa-x fa-spin fa-spin-reverse"></i>
-                                            </button>                                        
+                                                <input type="hidden" name="cart_item_id" value="{{ item.id }}">
+                                                <u  ><input style=" " type="text" name="quantity" value="{{item.quantity}}"></u>
+                                            </div>
+                                            <button type = 'submit' class="">Update</button>
+                                        </form>
                                         </td>
-                                    </form>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
+                                        <td class="cart__total">N{{item.total_price}}</td>
+                                    
+                                        <td class="cart__close">
+                                            <a href = "{% url 'shop:delete_item' item.id %}" title="Delete {{item.product.name}}" >  <button style= "outline:none; border:none;"  class="submit-button">
+                                                <i class="fa-solid fa-x fa-spin fa-spin-reverse"></i>
+                                            </button> </a>                                      
+                                        </td>
+                                    
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -82,7 +87,7 @@ Shopping Cart
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn">
-                        <a href=""><span class="icon_loading"></span> Update cart</a>
+                        <a href=""><span type="submit" class="icon_loading"></span> Update cart</a>
                     </div>
                 </div>
             </div>
@@ -103,11 +108,52 @@ Shopping Cart
                             <li>Subtotal <span>{{final_price }}</span></li>
                             <li>Total <span>{{final_price }}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                            <input type="hidden" name="public_key" value="FLWPUBK_TEST-0268791968bf1862772a3793a37607f1-X" />
+                            <input type="hidden" name="customer[email]" value="testhh@gmail.com" />
+                            <input type="hidden" name="customer[name]" value="Jessjje Pijndnnnkmjjan" />
+                            <input type="hidden" name="tx_ref" value="bitdddethtx-8uk01jhjhihi203" />
+                            <input type="hidden" name="amount" value="34050" />
+                            <input type="hidden" name="currency" value="USD" />
+                            <input type="hidden" name="meta[token]" value="55" />
+                            <input type="hidden" name="redirect_url" value="http://127.0.0.1:8000/confirm_payment+cart_id" />
+                            <button type="submit" id="start-payment-button" class="primary-btn" >Proceed to checkout</button>
+                          </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    {% comment %} <script>
+        let cart_total = "{{cart.final_price}}"
+        let cart_id = "{{cart.id}}"
+        let email = "{{cart.user.email}}"
+
+        function makePayment() {
+            FlutterwaveCheckout({
+              public_key: "FLWPUBK_TEST-0268791968bf1862772a3793a37607f1-X",
+              tx_ref: "titanic-48981487343MDI0NzMx",
+              amount: cart_total,
+              currency: "USD",
+              payment_options: "card, mobilemoneyghana, ussd",
+              redirect_url: "http://127.0.0.1:8000/confirm_payment+cart_id",
+              meta: {
+                consumer_id: 23,
+                consumer_mac: "92a3-912ba-1192a",
+              },
+              customer: {
+                email: email,
+                phone_number: "08102909304",
+                name: "Rose DeWitt Bukater",
+              },
+              customizations: {
+                title: "Top Tech Shop",
+                description: "Buy Cheap and Quality Tech Gadgets",
+                logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+              },
+            });
+          }
+    </script> {% endcomment %}
 
 {% endblock %}
